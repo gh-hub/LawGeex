@@ -4,6 +4,30 @@ body {
   /* font-size: calc(10px + 2vmin); */
   color: white;
 }
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  flex-grow: 1;
+}
+.search-container {
+  margin-bottom: 1rem;
+}
+
+.text-information {
+  padding: 1rem;
+}
+.movie-list-item-container {
+  margin-bottom: 0.5rem;
+}
+
+.movie-list-item-container .movie-info {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;
