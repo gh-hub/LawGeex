@@ -1,8 +1,8 @@
 import { Backdrop, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { omdbApiKey } from "../../../config";
-import { Loading } from "../../Loading";
-import { TextInformation } from "../../TextInformation";
+import { Loading } from "../../Base/Loading";
+import { TextInformation } from "../../Base/TextInformation";
 import { BaseInformation } from "./BaseInformation";
 
 export function SelectedMovie({ selectedMovieId, close, movieBaseInfo }) {

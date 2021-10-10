@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loading } from "../Loading";
+import { Loading } from "../Base/Loading";
 import { MoviesList } from "./MoviesList";
 import { Search } from "./Search";
 

@@ -1,6 +1,6 @@
 import "./App.css";
 import { MoviesSearch } from "./components/MoviesSearch";
-import { Title } from "./components/Title";
+import { Title } from "./components/Base/Title";
 
 function App() {
   return (

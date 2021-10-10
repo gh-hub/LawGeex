@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { TextInformation } from "../../TextInformation";
+import { TextInformation } from "../../Base/TextInformation";
 
 export function BaseInformation({ imageUrl, title, year }) {
   return (
