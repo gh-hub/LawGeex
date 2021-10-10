@@ -10,7 +10,7 @@ const SEARCH_YEAR = "Year";
 
 export function Search({ updateMovieList, updateIsLoading }) {
   function handleSubmit(event) {
-    updateMovieList([]);
+    updateMovieList(null);
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
     const name = formData.get("name");
@@ -19,18 +19,18 @@ export function Search({ updateMovieList, updateIsLoading }) {
     const fetchData = async () => {
       updateIsLoading(true);
       const response = await fetch(
-        `http://www.omdbapi.com/?i=${omdbId}&apikey=${omdbApiKey}&s=${name}&page=1-20&y=${year}`
+        `http://www.omdbapi.com/?i=${omdbId}&apikey=${omdbApiKey}&s=${name}&y=${year}&type=movie`
       );
       const data = await response.json();
-      //   updateIsLoading(false);
-      updateMovieList(data && data.Search);
+      updateIsLoading(false);
+      updateMovieList((data && data.Search) || []);
     };
 
     fetchData();
   }
 
   return (
-    <>
+    <div className="search-container">
       <Paper component="form" sx={{ display: "flex", alignItems: "center", width: "50rem" }} onSubmit={handleSubmit}>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
@@ -45,6 +45,6 @@ export function Search({ updateMovieList, updateIsLoading }) {
           <SearchIcon />
         </IconButton>
       </Paper>
-    </>
+    </div>
   );
 }

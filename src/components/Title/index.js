@@ -1,3 +1,9 @@
+import { Typography } from "@mui/material";
+
 export function Title() {
-  return <h1>LawGeex Home Test</h1>;
+  return (
+    <Typography variant="h3" component="div" gutterBottom>
+      LawGeex Home Test
+    </Typography>
+  );
 }
