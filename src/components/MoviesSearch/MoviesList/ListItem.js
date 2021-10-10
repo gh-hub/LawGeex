@@ -1,19 +1,27 @@
-import { Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
+import { useState } from "react";
+import { BaseInformation } from "./BaseInformation";
+import { SelectedMovie } from "./SelectedMovie";
 
-export function ListItem({ imageUrl, title, year }) {
+export function ListItem({ imageUrl, title, year, movieId }) {
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  function close() {
+    setSelectedMovieId(null);
+  }
+
   return (
     <div className="movie-list-item-container">
-      <Paper sx={{ display: "flex", alignItems: "center", width: "50rem" }} className="movie-info">
-        <img src={imageUrl} alt={title} height="150" loading="lazy" />
-        <div className="text-information">
-          <Typography variant="h5" component="div" gutterBottom>
-            {title}
-          </Typography>
-          <Typography variant="h6" component="div" gutterBottom>
-            {year}
-          </Typography>
-        </div>
+      <Paper
+        sx={{ display: "flex", alignItems: "center", width: "50rem" }}
+        className="movie-info"
+        onClick={() => setSelectedMovieId(movieId)}
+      >
+        <BaseInformation imageUrl={imageUrl} title={title} year={year} />
       </Paper>
+      {selectedMovieId && (
+        <SelectedMovie selectedMovieId={selectedMovieId} close={close} movieBaseInfo={{ imageUrl, title, year }} />
+      )}
     </div>
   );
 }
