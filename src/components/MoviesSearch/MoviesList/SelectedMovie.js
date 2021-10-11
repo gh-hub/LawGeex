@@ -40,7 +40,7 @@ export function SelectedMovie({ selectedMovieId, close, movieBaseInfo, cacheObj 
   const ratings = () => {
     if (!fullMovieInfo || !fullMovieInfo.Ratings) return <></>;
     const rates = fullMovieInfo.Ratings.map((rate) => (
-      <div>
+      <div key={rate.Source}>
         {rate.Source}: {rate.Value}
       </div>
     ));
