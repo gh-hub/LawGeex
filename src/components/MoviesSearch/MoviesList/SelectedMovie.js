@@ -5,6 +5,8 @@ import { Loading } from "../../Base/Loading";
 import { TextInformation } from "../../Base/TextInformation";
 import { BaseInformation } from "./BaseInformation";
 
+const KEYS_TO_IGNORE = ["Poster", "Year", "Title", "Ratings"];
+
 export function SelectedMovie({ selectedMovieId, close, movieBaseInfo }) {
   const [fullMovieInfo, setFullMovieInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,17 +22,16 @@ export function SelectedMovie({ selectedMovieId, close, movieBaseInfo }) {
     fetchData();
   }, [selectedMovieId]);
 
-  console.log(fullMovieInfo);
-
   const renderFullMovieInfo = () => {
-    return Object.keys(fullMovieInfo).map((key) => {
-      if (key === "Poster" || key === "Year" || key === "Title" || key === "Ratings") return <></>;
-      return (
-        <div>
-          {key}: {fullMovieInfo[key]}
-        </div>
-      );
-    });
+    return Object.keys(fullMovieInfo)
+      .filter((key) => !KEYS_TO_IGNORE.includes(key))
+      .map((key) => {
+        return (
+          <div key={`${selectedMovieId}_${key}`}>
+            {key}: {fullMovieInfo[key]}
+          </div>
+        );
+      });
   };
 
   const ratings = () => {

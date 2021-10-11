@@ -3,10 +3,12 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { omdbApiKey, omdbId } from "../../config";
+import { useState } from "react";
 
 const SEARCH_FREE_TEXT = "Movie name";
 
 export function Search({ updateMovieList, updateIsLoading }) {
+  const [cache, setCache] = useState({});
   function handleSubmit(event) {
     updateMovieList(null);
     const formData = new FormData(event.currentTarget);
@@ -18,10 +20,13 @@ export function Search({ updateMovieList, updateIsLoading }) {
       const response = await fetch(`http://www.omdbapi.com/?i=${omdbId}&apikey=${omdbApiKey}&s=${name}&type=movie`);
       const data = await response.json();
       updateIsLoading(false);
-      updateMovieList((data && data.Search) || []);
+      const updateMovieListItem = (data && data.Search) || [];
+      updateMovieList(updateMovieListItem);
+      setCache({ ...cache, [name]: updateMovieListItem });
     };
 
-    fetchData();
+    if (Object.keys(cache).includes(name)) updateMovieList(cache[name]);
+    else fetchData();
   }
 
   return (
