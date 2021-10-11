@@ -3,6 +3,11 @@ body {
   padding: 1rem;
   /* font-size: calc(10px + 2vmin); */
   color: white;
+  display: flex;
+  justify-content: center;
+}
+.app {
+  width: 50rem;
 }
 .flex {
   display: flex;
@@ -19,6 +24,8 @@ body {
 }
 .filter-container {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: end;
 }
 
 .text-information {
@@ -33,12 +40,3 @@ body {
   align-items: flex-start;
   cursor: pointer;
 }
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */

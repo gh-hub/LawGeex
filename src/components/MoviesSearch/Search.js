@@ -31,7 +31,7 @@ export function Search({ updateMovieList, updateIsLoading }) {
 
   return (
     <div className="search-container">
-      <Paper component="form" sx={{ display: "flex", alignItems: "center", width: "50rem" }} onSubmit={handleSubmit}>
+      <Paper component="form" sx={{ display: "flex", alignItems: "center" }} onSubmit={handleSubmit}>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder={`${SEARCH_FREE_TEXT}`}

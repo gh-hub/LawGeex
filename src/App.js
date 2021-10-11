@@ -4,7 +4,7 @@ import { Title } from "./components/Base/Title";
 
 function App() {
   return (
-    <div className="App-header">
+    <div className="app">
       <Title />
       <MoviesSearch />
     </div>

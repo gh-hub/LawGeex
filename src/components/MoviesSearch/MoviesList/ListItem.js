@@ -13,7 +13,7 @@ export function ListItem({ imageUrl, title, year, movieId, cacheObj }) {
   return (
     <div className="movie-list-item-container">
       <Paper
-        sx={{ display: "flex", alignItems: "center", width: "50rem" }}
+        sx={{ display: "flex", alignItems: "center" }}
         className="movie-info"
         onClick={() => setSelectedMovieId(movieId)}
       >
