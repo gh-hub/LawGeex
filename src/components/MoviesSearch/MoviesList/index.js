@@ -6,6 +6,8 @@ const NO_MOVIES_MSG = "No movies was found";
 
 export function MoviesList({ movies }) {
   const [year, setYear] = useState(null);
+  const [cache, setCache] = useState({});
+
   if (movies.length === 0) return <div>{NO_MOVIES_MSG}</div>;
   const items = movies
     .filter((movie) => {
@@ -14,7 +16,16 @@ export function MoviesList({ movies }) {
     })
     .map((movie) => {
       const { Title, Poster, Year, imdbID } = movie;
-      return <ListItem key={imdbID} imageUrl={Poster} title={Title} year={Year} movieId={imdbID} />;
+      return (
+        <ListItem
+          key={imdbID}
+          imageUrl={Poster}
+          title={Title}
+          year={Year}
+          movieId={imdbID}
+          cacheObj={{ cache, setCache }}
+        />
+      );
     });
   return (
     <>

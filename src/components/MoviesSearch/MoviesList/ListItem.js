@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BaseInformation } from "./BaseInformation";
 import { SelectedMovie } from "./SelectedMovie";
 
-export function ListItem({ imageUrl, title, year, movieId }) {
+export function ListItem({ imageUrl, title, year, movieId, cacheObj }) {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   function close() {
@@ -20,7 +20,12 @@ export function ListItem({ imageUrl, title, year, movieId }) {
         <BaseInformation imageUrl={imageUrl} title={title} year={year} />
       </Paper>
       {selectedMovieId && (
-        <SelectedMovie selectedMovieId={selectedMovieId} close={close} movieBaseInfo={{ imageUrl, title, year }} />
+        <SelectedMovie
+          selectedMovieId={selectedMovieId}
+          close={close}
+          movieBaseInfo={{ imageUrl, title, year }}
+          cacheObj={cacheObj}
+        />
       )}
     </div>
   );

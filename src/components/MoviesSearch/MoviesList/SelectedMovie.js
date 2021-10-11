@@ -7,9 +7,10 @@ import { BaseInformation } from "./BaseInformation";
 
 const KEYS_TO_IGNORE = ["Poster", "Year", "Title", "Ratings"];
 
-export function SelectedMovie({ selectedMovieId, close, movieBaseInfo }) {
+export function SelectedMovie({ selectedMovieId, close, movieBaseInfo, cacheObj }) {
   const [fullMovieInfo, setFullMovieInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { setCache, cache } = cacheObj;
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -17,9 +18,11 @@ export function SelectedMovie({ selectedMovieId, close, movieBaseInfo }) {
       const data = await response.json();
       setIsLoading(false);
       setFullMovieInfo(data);
+      setCache({ ...cache, [selectedMovieId]: data });
     };
 
-    fetchData();
+    if (Object.keys(cache).includes(selectedMovieId)) setFullMovieInfo(cache[selectedMovieId]);
+    else fetchData();
   }, [selectedMovieId]);
 
   const renderFullMovieInfo = () => {
